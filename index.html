@@ -1,345 +1,569 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy Birthday Kowsalya 💚</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StayNest – Find Your Perfect Stay</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
 
-    body{
-      overflow:hidden;
-      height:100vh;
-      background:
-        radial-gradient(circle at top, #1f4037 0%, #0f2027 60%, #000 100%);
-      font-family: 'Trebuchet MS', sans-serif;
-      color:white;
-    }
-
-    canvas{
-      position:absolute;
-      top:0;
-      left:0;
-    }
-
-    .container{
-      position:relative;
-      z-index:10;
-      height:100vh;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      padding:20px;
-    }
-
-    .title{
-      font-size:4rem;
-      color:#9dffb0;
-      text-shadow:
-        0 0 10px #7dff95,
-        0 0 25px #5cff7a,
-        0 0 50px #39ff64;
-      animation: glow 2s infinite alternate;
-    }
-
-    .subtitle{
-      margin-top:15px;
-      font-size:1.5rem;
-      color:#eaffef;
-      opacity:0.9;
-    }
-
-    .message{
-      margin-top:30px;
-      max-width:700px;
-      line-height:1.8;
-      font-size:1.2rem;
-      color:#d6ffe0;
-      background:rgba(255,255,255,0.08);
-      padding:25px;
-      border-radius:20px;
-      backdrop-filter:blur(8px);
-      box-shadow:0 0 20px rgba(100,255,150,0.3);
-    }
-
-    .cake{
-      margin-top:40px;
-      position:relative;
-      width:180px;
-      height:180px;
-    }
-
-    .layer1, .layer2, .layer3{
-      position:absolute;
-      left:50%;
-      transform:translateX(-50%);
-      border-radius:20px;
-    }
-
-    .layer1{
-      bottom:0;
-      width:180px;
-      height:60px;
-      background:#5eff8b;
-    }
-
-    .layer2{
-      bottom:55px;
-      width:140px;
-      height:50px;
-      background:#b5ffcb;
-    }
-
-    .layer3{
-      bottom:100px;
-      width:100px;
-      height:40px;
-      background:#eaffef;
-    }
-
-    .candle{
-      position:absolute;
-      width:10px;
-      height:35px;
-      background:white;
-      top:18px;
-      left:50%;
-      transform:translateX(-50%);
-      border-radius:5px;
-    }
-
-    .flame{
-      position:absolute;
-      width:18px;
-      height:18px;
-      background:gold;
-      border-radius:50%;
-      top:-12px;
-      left:50%;
-      transform:translateX(-50%);
-      animation:flicker 0.2s infinite alternate;
-      box-shadow:0 0 20px gold;
-    }
-
-    .anime-heart{
-      position:absolute;
-      color:#9dffb0;
-      font-size:24px;
-      animation: float 6s linear infinite;
-      opacity:0.8;
-    }
-
-    @keyframes glow{
-      from{
-        text-shadow:
-          0 0 10px #7dff95,
-          0 0 25px #5cff7a;
-      }
-      to{
-        text-shadow:
-          0 0 20px #7dff95,
-          0 0 40px #5cff7a,
-          0 0 70px #39ff64;
-      }
-    }
-
-    @keyframes flicker{
-      from{
-        transform:translateX(-50%) scale(1);
-      }
-      to{
-        transform:translateX(-50%) scale(1.2);
-      }
-    }
-
-    @keyframes float{
-      0%{
-        transform:translateY(100vh) translateX(0);
-        opacity:0;
-      }
-      10%{
-        opacity:1;
-      }
-      100%{
-        transform:translateY(-120vh) translateX(100px);
-        opacity:0;
-      }
-    }
-
-    .footer{
-      position:absolute;
-      bottom:20px;
-      font-size:1rem;
-      color:#bfffd0;
-      opacity:0.8;
-    }
-
-  </style>
 </head>
 
 <body>
 
-<canvas id="fireworks"></canvas>
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-brand" onclick="nav('home')">🏡 Stay<span>Nest</span></div>
+        <div class="nav-links" id="nav-links"></div>
+        <div id="nav-right" style="display:flex;align-items:center;gap:.8rem"></div>
+    </nav>
 
-<div class="container">
+    <!-- ===== PAGES ===== -->
 
-  <div class="title">
-    Happy Birthday 💚
-  </div>
+    <!-- HOME PAGE -->
+    <div class="page active" id="page-home">
+        <!-- Hero -->
+        <div class="hero">
+            <div class="hero-c">
+                <div class="hero-tag">✨ 100 Properties · 10 Cities Across India</div>
+                <h1>Find Your <em>Perfect Stay</em><br>Anywhere You Go</h1>
+                <p>Hotels & room stays — real-time availability, instant booking</p>
+                <div class="sbox" id="home-sbox">
+                    <div class="sf">
+                        <label>🏙 City</label>
+                        <select id="h-city">
+                            <option value="">All Cities</option>
+                        </select>
+                    </div>
+                    <div class="sdiv"></div>
+                    <div class="sf">
+                        <label>🏷 Type</label>
+                        <select id="h-type">
+                            <option value="">All Types</option>
+                            <option value="hotel">🏨 Hotel</option>
+                            <option value="room">🛏 Room Stay</option>
+                        </select>
+                    </div>
+                    <div class="sdiv"></div>
+                    <div class="sf">
+                        <label>📅 Check-in</label>
+                        <input type="date" id="h-checkin">
+                    </div>
+                    <div class="sdiv"></div>
+                    <div class="sf">
+                        <label>📅 Check-out</label>
+                        <input type="date" id="h-checkout">
+                    </div>
+                    <div class="sdiv"></div>
+                    <div class="sf" style="min-width:80px">
+                        <label>👥 Guests</label>
+                        <input type="number" id="h-guests" placeholder="2" min="1" max="30">
+                    </div>
+                    <button class="btn btn-primary btn-lg" onclick="heroSearch()" style="flex-shrink:0">🔍
+                        Search</button>
+                </div>
+            </div>
+        </div>
 
-  <div class="subtitle">
-    Princess Kowsalya ✨
-  </div>
+        <!-- Stats Strip -->
+        <div class="stats-strip">
+            <div class="stats-inner">
+                <div class="ss">
+                    <div class="num">100</div>
+                    <div class="lbl">Properties</div>
+                </div>
+                <div class="ss">
+                    <div class="num">10</div>
+                    <div class="lbl">Cities</div>
+                </div>
+                <div class="ss">
+                    <div class="num">50</div>
+                    <div class="lbl">Hotels</div>
+                </div>
+                <div class="ss">
+                    <div class="num">50</div>
+                    <div class="lbl">Room Stays</div>
+                </div>
+                <div class="ss">
+                    <div class="num">4.7⭐</div>
+                    <div class="lbl">Avg Rating</div>
+                </div>
+            </div>
+        </div>
 
-  <div class="message">
-    May your smile shine brighter than stars,
-    your dreams bloom beautifully like spring,
-    and your life be filled with happiness,
-    peace, love, and magical anime moments 💚✨
-    <br><br>
-    Today is your day, Queen 👑
-  </div>
+        <!-- Explore by City -->
+        <div class="section">
+            <div class="between mb3">
+                <h2 class="sec-title" style="margin:0">🏙 Explore by City</h2>
+                <button class="btn btn-outline btn-sm" onclick="nav('browse')">View All →</button>
+            </div>
+            <div class="city-hero-wrap" id="city-hero-grid"></div>
+        </div>
 
-  <div class="cake">
-    <div class="layer1"></div>
-    <div class="layer2"></div>
-    <div class="layer3"></div>
+        <!-- Hotels vs Room Stays - HIGHLIGHTED SECTION -->
+        <div style="background:var(--white);padding:3rem 0">
+            <div class="section" style="padding-top:0;padding-bottom:0">
+                <h2 class="sec-title" style="text-align:center;margin-bottom:.5rem">🏨 Hotels &amp; 🛏 Room Stays</h2>
+                <p style="text-align:center;color:var(--gray);margin-bottom:2rem">Choose the stay that fits your style
+                </p>
+                <div class="type-split">
+                    <div class="type-card" onclick="nav('browse','hotel')">
+                        <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1379691658771783850/original/1cceb5fc-3290-411a-8755-1eb170cd2ad9.jpeg?im_w=720"
+                            alt="Hotels">
+                        <div class="type-overlay"
+                            style="background:linear-gradient(to top,rgba(26,26,46,.85),rgba(26,26,46,.1))">
+                            <h3>🏨 Hotels</h3>
+                            <p>50 hotels across 10 cities. Full amenities, room service &amp; pool.</p>
+                            <span class="btn btn-white btn-sm" style="width:fit-content">Browse Hotels →</span>
+                        </div>
+                    </div>
+                    <div class="type-card" onclick="nav('browse','room')">
+                        <img src="https://a0.muscache.com/im/pictures/miso/Hosting-874193507946066263/original/711bdf0d-b6c4-4443-ba71-9df424c92bfc.jpeg?im_w=720"
+                            alt="Room Stays">
+                        <div class="type-overlay"
+                            style="background:linear-gradient(to top,rgba(0,166,153,.85),rgba(0,166,153,.1))">
+                            <h3>🛏 Room Stays</h3>
+                            <p>50 unique room stays. Cozy, personal &amp; home-like experiences.</p>
+                            <span class="btn btn-white btn-sm" style="width:fit-content">Browse Room Stays →</span>
+                        </div>
+                    </div>
+                </div>
 
-    <div class="candle">
-      <div class="flame"></div>
+                <!-- City tabs with live property preview -->
+                <h2 class="sec-title" style="margin-bottom:1rem">Featured Stays by City</h2>
+                <div class="city-tabs" id="feat-city-tabs"></div>
+                <div style="margin-top:1.5rem">
+                    <div style="display:flex;gap:.6rem;margin-bottom:1rem" id="feat-type-btns">
+                        <button class="btn btn-primary btn-sm" id="fbt-all" onclick="setFeatType('all')">All</button>
+                        <button class="btn btn-outline btn-sm" id="fbt-hotel" onclick="setFeatType('hotel')">🏨
+                            Hotels</button>
+                        <button class="btn btn-outline btn-sm" id="fbt-room" onclick="setFeatType('room')">🛏 Room
+                            Stays</button>
+                    </div>
+                    <div class="prop-grid" id="feat-props-grid"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- How it works -->
+        <div class="section">
+            <h2 class="sec-title" style="text-align:center;margin-bottom:2rem">How StayNest Works</h2>
+            <div class="how-grid">
+                <div class="how-card">
+                    <div class="how-icon">🏙</div>
+                    <h4>Choose City</h4>
+                    <p>Pick from 10 cities. Each has 5 hotels and 5 room stays to choose from.</p>
+                </div>
+                <div class="how-card">
+                    <div class="how-icon">📅</div>
+                    <h4>Select Dates</h4>
+                    <p>See real-time room availability for your travel dates.</p>
+                </div>
+                <div class="how-card">
+                    <div class="how-icon">💳</div>
+                    <h4>Book &amp; Pay</h4>
+                    <p>Pay online or choose pay at hotel. Simple 2-step checkout.</p>
+                </div>
+                <div class="how-card">
+                    <div class="how-icon">📄</div>
+                    <h4>Get Invoice</h4>
+                    <p>Instant downloadable invoice after booking confirmation.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Host CTA -->
+        <div class="section" style="padding-top:0">
+            <div class="host-cta">
+                <h2>Own a Property? Become a Host</h2>
+                <p>List your hotel or room stay — manage bookings and grow your income</p>
+                <button class="btn btn-white btn-lg" onclick="nav('register','host')">🏠 Become a Host</button>
+            </div>
+        </div>
+
+        <footer>
+            <div>🏡 <span>StayNest</span> · Connecting travellers with perfect stays across India</div>
+            <div style="margin-top:.5rem">© 2026 StayNest. All rights reserved.</div>
+        </footer>
     </div>
-  </div>
 
-</div>
+    <!-- BROWSE PAGE -->
+    <div class="page" id="page-browse">
+        <div class="pg-header">
+            <h1>Explore Stays</h1>
+            <p>100 properties · 10 cities · real-time availability</p>
+        </div>
+        <!-- Quick filters -->
+        <div style="background:#fff;border-bottom:1px solid var(--border);padding:1rem 2rem">
+            <div style="max-width:1280px;margin:0 auto;display:flex;gap:.8rem;align-items:center;flex-wrap:wrap">
+                <select class="fc" id="b-city" style="width:160px" onchange="applyBrowse()">
+                    <option value="">🏙 All Cities</option>
+                </select>
+                <select class="fc" id="b-type" style="width:150px" onchange="applyBrowse()">
+                    <option value="">All Types</option>
+                    <option value="hotel">🏨 Hotel</option>
+                    <option value="room">🛏 Room Stay</option>
+                </select>
+                <input type="date" class="fc" id="b-checkin" style="width:140px" onchange="applyBrowse()">
+                <input type="date" class="fc" id="b-checkout" style="width:140px" onchange="applyBrowse()">
+                <input type="number" class="fc" id="b-guests" placeholder="Guests" min="1" style="width:90px"
+                    onchange="applyBrowse()">
+                <button class="btn btn-primary" onclick="applyBrowse()">Search</button>
+            </div>
+        </div>
+        <div class="browse-layout">
+            <aside class="filter-panel">
+                <h3 style="font-family:var(--fh);font-size:1rem;margin-bottom:1rem">🔧 Filters</h3>
+                <div style="margin-bottom:1.2rem">
+                    <label class="fg"
+                        style="font-size:.82rem;font-weight:600;color:var(--gray);display:block;margin-bottom:.4rem">Price
+                        Range (₹/night)</label>
+                    <div style="display:flex;gap:.5rem;align-items:center">
+                        <input type="number" class="fc" id="f-min" placeholder="Min">
+                        <span style="color:var(--gray)">–</span>
+                        <input type="number" class="fc" id="f-max" placeholder="Max">
+                    </div>
+                </div>
+                <div style="margin-bottom:1.2rem">
+                    <label
+                        style="font-size:.82rem;font-weight:600;color:var(--gray);display:block;margin-bottom:.4rem">Min
+                        Rating</label>
+                    <select class="fc" id="f-rating">
+                        <option value="0">Any</option>
+                        <option value="4">4⭐ & above</option>
+                        <option value="4.5">4.5⭐ & above</option>
+                    </select>
+                </div>
+                <div style="margin-bottom:1.2rem">
+                    <label
+                        style="font-size:.82rem;font-weight:600;color:var(--gray);display:block;margin-bottom:.4rem">Amenities</label>
+                    <div id="amen-checks" style="display:flex;flex-direction:column;gap:.4rem;font-size:.85rem"></div>
+                </div>
+                <button class="btn btn-primary w100" onclick="applyBrowse()">Apply</button>
+                <button class="btn btn-ghost w100 mt1" onclick="clearBrowse()">Clear All</button>
+            </aside>
+            <main>
+                <div class="between" style="margin-bottom:1rem">
+                    <h2 id="browse-count" style="font-family:var(--fh);font-size:1.2rem">Loading...</h2>
+                    <select class="fc" id="b-sort" style="width:170px" onchange="applyBrowse()">
+                        <option value="">Default</option>
+                        <option value="price-asc">Price: Low → High</option>
+                        <option value="price-desc">Price: High → Low</option>
+                        <option value="rating">Top Rated</option>
+                    </select>
+                </div>
+                <div class="prop-grid" id="browse-grid"></div>
+            </main>
+        </div>
+    </div>
 
-<div class="footer">
-  Made with 💚 for Kowsalya
-</div>
+    <!-- PROPERTY DETAIL PAGE -->
+    <div class="page" id="page-property">
+        <div id="property-content"></div>
+    </div>
 
-<script>
+    <!-- LOGIN PAGE -->
+    <div class="page" id="page-login">
+        <div class="auth-wrap">
+            <div class="auth-vis">
+                <div class="auth-vc">
+                    <div style="font-size:3rem;margin-bottom:1rem">🏡</div>
+                    <h2>Welcome Back</h2>
+                    <p style="opacity:.8;max-width:280px;margin:0 auto">Your next perfect stay is one login away</p>
+                    <div class="demo-box">
+                        <h4>Demo Accounts</h4>
+                        <div class="demo-row"><span class="demo-role">ADMIN</span><span>admin@staynest.com /
+                                admin123</span></div>
+                        <div class="demo-row"><span class="demo-role">HOST</span><span>raj@host.com / host123</span>
+                        </div>
+                        <div class="demo-row"><span class="demo-role">HOST</span><span>priya@host.com / host456</span>
+                        </div>
+                        <div class="demo-row"><span class="demo-role">GUEST</span><span>arun@guest.com / guest123</span>
+                        </div>
+                        <div class="demo-row"><span class="demo-role">GUEST</span><span>divya@guest.com /
+                                guest456</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="auth-fw">
+                <div class="auth-card">
+                    <div class="auth-logo">🏡 Stay<span>Nest</span></div>
+                    <h2 style="font-family:var(--fh);font-size:1.5rem;margin-bottom:.3rem">Sign In</h2>
+                    <p style="color:var(--gray);font-size:.88rem;margin-bottom:1.8rem">Admin, Host or Guest — one login
+                        for all</p>
+                    <div class="fg mb2"><label>Email</label><input type="email" class="fc" id="li-email"
+                            placeholder="you@example.com"></div>
+                    <div class="fg mb3"><label>Password</label><input type="password" class="fc" id="li-pwd"
+                            placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"></div>
+                    <button class="btn btn-primary w100 btn-lg" onclick="doLogin()">Sign In →</button>
+                    <div style="text-align:center;margin-top:1rem;font-size:.88rem;color:var(--gray)">
+                        No account? <a style="color:var(--coral);font-weight:600;cursor:pointer"
+                            onclick="nav('register')">Sign Up</a>
+                    </div>
+                    <div style="text-align:center;margin-top:.5rem;font-size:.83rem;color:var(--gray)">
+                        List your property? <a style="color:var(--teal);font-weight:600;cursor:pointer"
+                            onclick="nav('register','host')">Become a Host</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-  // ===============================
-  // Floating anime hearts
-  // ===============================
+    <!-- REGISTER PAGE -->
+    <div class="page" id="page-register">
+        <div class="auth-fw" style="min-height:calc(100vh - 68px)">
+            <div class="auth-card">
+                <div class="auth-logo">🏡 Stay<span>Nest</span></div>
+                <h2 style="font-family:var(--fh);font-size:1.5rem;margin-bottom:.3rem">Create Account</h2>
+                <p style="color:var(--gray);font-size:.88rem;margin-bottom:1.2rem">Join as a Guest or Host</p>
+                <div class="role-picker">
+                    <button class="role-btn active" id="reg-guest-btn" onclick="setRegRole('customer')">🧳
+                        Guest</button>
+                    <button class="role-btn" id="reg-host-btn" onclick="setRegRole('host')">🏠 Host</button>
+                </div>
+                <input type="hidden" id="reg-role" value="customer">
+                <div class="frow mb2">
+                    <div class="fg"><label>First Name</label><input type="text" class="fc" id="reg-fname"
+                            placeholder="Raj"></div>
+                    <div class="fg"><label>Last Name</label><input type="text" class="fc" id="reg-lname"
+                            placeholder="Patel"></div>
+                </div>
+                <div class="fg mb2"><label>Email</label><input type="email" class="fc" id="reg-email"
+                        placeholder="you@example.com"></div>
+                <div class="fg mb2"><label>Phone</label><input type="tel" class="fc" id="reg-phone"
+                        placeholder="+91 98765 43210"></div>
+                <div class="fg mb3"><label>Password (min 6 chars)</label><input type="password" class="fc" id="reg-pwd"
+                        placeholder="••••••••"></div>
+                <div id="host-note" class="hidden"
+                    style="background:#fffbeb;border:1px solid #fde68a;border-radius:var(--rsm);padding:.8rem;font-size:.83rem;color:#92400e;margin-bottom:1rem">
+                    🔔 Properties need admin approval before going live.
+                </div>
+                <button class="btn btn-primary w100 btn-lg" onclick="doRegister()">Create Account →</button>
+                <div style="text-align:center;margin-top:1rem;font-size:.88rem;color:var(--gray)">
+                    Have account? <a style="color:var(--coral);font-weight:600;cursor:pointer"
+                        onclick="nav('login')">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-  function createHeart(){
-    const heart = document.createElement("div");
-    heart.classList.add("anime-heart");
-    heart.innerHTML = "💚";
+    <!-- CUSTOMER DASHBOARD -->
+    <div class="page" id="page-customer">
+        <div class="dash-layout">
+            <aside class="sidebar" id="cust-sidebar">
+                <div class="sb-sec">
+                    <div class="sb-lbl">Guest Menu</div>
+                    <div class="sb-link active" onclick="custTab('overview',this)"><span class="ic">🏠</span>Overview
+                    </div>
+                    <div class="sb-link" onclick="custTab('bookings',this)"><span class="ic">📅</span>All Bookings</div>
+                    <div class="sb-link" onclick="custTab('upcoming',this)"><span class="ic">⏳</span>Upcoming</div>
+                    <div class="sb-link" onclick="custTab('completed',this)"><span class="ic">✅</span>Completed</div>
+                </div>
+                <div class="sb-sec">
+                    <div class="sb-lbl">Explore</div>
+                    <div class="sb-link" onclick="nav('browse')"><span class="ic">🔍</span>Find Stays</div>
+                    <div class="sb-link" onclick="nav('home')"><span class="ic">🏡</span>Home</div>
+                </div>
+            </aside>
+            <main class="main-c" id="cust-main"></main>
+        </div>
+    </div>
 
-    heart.style.left = Math.random() * window.innerWidth + "px";
-    heart.style.animationDuration = (4 + Math.random()*4) + "s";
+    <!-- HOST DASHBOARD -->
+    <div class="page" id="page-host">
+        <div class="dash-layout">
+            <aside class="sidebar" id="host-sidebar">
+                <div class="sb-sec">
+                    <div class="sb-lbl">Host Menu</div>
+                    <div class="sb-link active" onclick="hostTab('overview',this)"><span class="ic">🏠</span>Overview
+                    </div>
+                    <div class="sb-link" onclick="hostTab('properties',this)"><span class="ic">🏨</span>My Properties
+                    </div>
+                    <div class="sb-link" onclick="hostTab('bookings',this)"><span class="ic">📅</span>Bookings</div>
+                    <div class="sb-link" onclick="hostTab('revenue',this)"><span class="ic">💰</span>Revenue</div>
+                </div>
+                <div class="sb-sec">
+                    <div class="sb-lbl">Actions</div>
+                    <div class="sb-link" onclick="openAddProp()"><span class="ic">➕</span>Add Property</div>
+                    <div class="sb-link" onclick="nav('browse')"><span class="ic">🔍</span>Browse</div>
+                </div>
+            </aside>
+            <main class="main-c" id="host-main"></main>
+        </div>
+    </div>
 
-    document.body.appendChild(heart);
+    <!-- ADMIN DASHBOARD -->
+    <div class="page" id="page-admin">
+        <div class="dash-layout">
+            <aside class="sidebar" id="admin-sidebar">
+                <div class="sb-sec">
+                    <div class="sb-lbl">Admin Panel</div>
+                    <div class="sb-link active" onclick="adminTab('overview',this)"><span class="ic">📊</span>Overview
+                    </div>
+                    <div class="sb-link" onclick="adminTab('approvals',this)"><span class="ic">⏳</span>Approvals <span
+                            id="ap-badge"
+                            style="background:var(--coral);color:#fff;border-radius:50px;padding:0 .4rem;font-size:.7rem;margin-left:.3rem"></span>
+                    </div>
+                    <div class="sb-link" onclick="adminTab('properties',this)"><span class="ic">🏨</span>Properties
+                    </div>
+                    <div class="sb-link" onclick="adminTab('bookings',this)"><span class="ic">📅</span>Bookings</div>
+                    <div class="sb-link" onclick="adminTab('users',this)"><span class="ic">👥</span>Users</div>
+                    <div class="sb-link" onclick="adminTab('revenue',this)"><span class="ic">💰</span>Revenue</div>
+                </div>
+            </aside>
+            <main class="main-c" id="admin-main"></main>
+        </div>
+    </div>
 
-    setTimeout(() => {
-      heart.remove();
-    }, 8000);
-  }
+    <!-- PROFILE PAGE -->
+    <div class="page" id="page-profile">
+        <div style="max-width:600px;margin:3rem auto;padding:0 1.5rem">
+            <div class="card">
+                <div class="profile-header-bg">
+                    <div class="p-avatar" id="prof-av"></div>
+                    <h2 style="font-family:var(--fh)" id="prof-name"></h2>
+                    <div style="opacity:.7;margin-top:.3rem" id="prof-role"></div>
+                </div>
+                <div style="padding:2rem">
+                    <h3 style="font-family:var(--fh);margin-bottom:1.5rem">Edit Profile</h3>
+                    <div class="fg mb2"><label>Full Name</label><input type="text" class="fc" id="pf-name"></div>
+                    <div class="fg mb2"><label>Email (locked)</label><input type="email" class="fc" id="pf-email"
+                            disabled style="background:#f3f4f6"></div>
+                    <div class="fg mb2"><label>Phone</label><input type="tel" class="fc" id="pf-phone"></div>
+                    <div class="fg mb3"><label>New Password (blank = no change)</label><input type="password" class="fc"
+                            id="pf-pwd" placeholder="New password"></div>
+                    <button class="btn btn-primary w100" onclick="saveProfile()">Save Changes</button>
+                    <hr style="margin:1.5rem 0;border:none;border-top:1px solid var(--border)">
+                    <div style="text-align:center"><button class="btn btn-outline" onclick="goDash()">← Back to
+                            Dashboard</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-  setInterval(createHeart, 400);
+    <!-- ===== MODALS ===== -->
+    <!-- Booking Modal -->
+    <div class="modal-overlay" id="modal-booking">
+        <div class="modal" style="max-width:520px">
+            <div class="mhead">
+                <h3>Confirm Booking</h3><button class="mclose" onclick="closeM('modal-booking')">✕</button>
+            </div>
+            <div class="mbody">
+                <div id="bk-summary"></div>
+                <h4 style="font-family:var(--fh);margin:1rem 0 .75rem">Guest Details</h4>
+                <div class="fg mb2"><label>Full Name</label><input type="text" class="fc" id="g-name"></div>
+                <div class="fg mb2"><label>Email</label><input type="email" class="fc" id="g-email"></div>
+                <div class="fg mb2"><label>Phone</label><input type="tel" class="fc" id="g-phone"></div>
+                <div id="card-form" class="hidden">
+                    <h4 style="font-family:var(--fh);margin:1rem 0 .75rem">💳 Card Details</h4>
+                    <div class="fg mb2"><label>Card Number</label><input type="text" class="fc" id="c-num"
+                            placeholder="1234 5678 9012 3456" maxlength="19" oninput="fmtCard(this)"></div>
+                    <div class="frow">
+                        <div class="fg"><label>Expiry (MM/YY)</label><input type="text" class="fc" id="c-exp"
+                                placeholder="MM/YY" maxlength="5"></div>
+                        <div class="fg"><label>CVV</label><input type="text" class="fc" id="c-cvv" placeholder="123"
+                                maxlength="3"></div>
+                    </div>
+                    <div class="fg mt2"><label>Name on Card</label><input type="text" class="fc" id="c-cname"
+                            placeholder="RAJ PATEL"></div>
+                </div>
+            </div>
+            <div class="mfoot">
+                <button class="btn btn-outline" onclick="closeM('modal-booking')">Cancel</button>
+                <button class="btn btn-primary" id="confirm-bk-btn" onclick="confirmBooking()">Confirm & Book</button>
+            </div>
+        </div>
+    </div>
 
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="modal-success">
+        <div class="modal" style="max-width:420px">
+            <div class="mbody" style="padding:2.5rem;text-align:center">
+                <div style="font-size:4rem;margin-bottom:1rem">🎉</div>
+                <h2 style="font-family:var(--fh);margin-bottom:.5rem">Booking Confirmed!</h2>
+                <p class="muted" style="margin-bottom:1.5rem">Your stay has been booked successfully.</p>
+                <div id="success-det"
+                    style="background:var(--light);border-radius:var(--rsm);padding:1rem;margin-bottom:1.5rem;text-align:left;font-size:.88rem">
+                </div>
+                <div style="display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap">
+                    <button class="btn btn-outline" id="inv-btn">📄 Download Invoice</button>
+                    <button class="btn btn-primary" onclick="closeM('modal-success');nav('customer')">My
+                        Bookings</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-  // ===============================
-  // Fireworks Canvas
-  // ===============================
+    <!-- Add/Edit Property Modal -->
+    <div class="modal-overlay" id="modal-prop">
+        <div class="modal" style="max-width:640px">
+            <div class="mhead">
+                <h3 id="prop-modal-h">Add Property</h3><button class="mclose" onclick="closeM('modal-prop')">✕</button>
+            </div>
+            <div class="mbody">
+                <input type="hidden" id="ep-id">
+                <div class="frow mb2">
+                    <div class="fg"><label>Property Name *</label><input type="text" class="fc" id="ep-name"
+                            placeholder="Grand Marina Hotel"></div>
+                    <div class="fg"><label>Type *</label><select class="fc" id="ep-type">
+                            <option value="hotel">🏨 Hotel</option>
+                            <option value="room">🛏 Room Stay</option>
+                        </select></div>
+                </div>
+                <div class="fg mb2"><label>City *</label><select class="fc" id="ep-city"></select></div>
+                <div class="fg mb2"><label>Full Address *</label><input type="text" class="fc" id="ep-addr"
+                        placeholder="12 Beach Road, Chennai"></div>
+                <div class="fg mb2"><label>Description *</label><textarea class="fc" id="ep-desc" rows="3"
+                        placeholder="Describe your property..."></textarea></div>
+                <div class="frow mb2">
+                    <div class="fg"><label>Price/Night (₹) *</label><input type="number" class="fc" id="ep-price"
+                            placeholder="2500" min="100"></div>
+                    <div class="fg"><label>Total Rooms *</label><input type="number" class="fc" id="ep-rooms"
+                            placeholder="10" min="1"></div>
+                </div>
+                <div class="fg mb2"><label>Max Guests/Room *</label><input type="number" class="fc" id="ep-guests"
+                        placeholder="2" min="1" max="10"></div>
+                <div class="fg mb2"><label>Image URL (optional)</label><input type="text" class="fc" id="ep-img"
+                        placeholder="https://images.unsplash.com/..."></div>
+                <div class="fg mb2"><label>Amenities (comma separated)</label><input type="text" class="fc" id="ep-amen"
+                        placeholder="WiFi, Pool, AC, Parking"></div>
+                <div
+                    style="background:#fffbeb;border:1px solid #fde68a;border-radius:var(--rsm);padding:.8rem;font-size:.83rem;color:#92400e">
+                    🔔 Property needs admin approval before going live (usually 24–48 hrs).
+                </div>
+            </div>
+            <div class="mfoot">
+                <button class="btn btn-outline" onclick="closeM('modal-prop')">Cancel</button>
+                <button class="btn btn-primary" onclick="saveProp()">Submit for Approval</button>
+            </div>
+        </div>
+    </div>
 
-  const canvas = document.getElementById("fireworks");
-  const ctx = canvas.getContext("2d");
+    <!-- Reject Modal -->
+    <div class="modal-overlay" id="modal-reject">
+        <div class="modal" style="max-width:400px">
+            <div class="mhead">
+                <h3>Reject Property</h3><button class="mclose" onclick="closeM('modal-reject')">✕</button>
+            </div>
+            <div class="mbody">
+                <p class="mb2">Reason for rejection (shown to host):</p>
+                <textarea class="fc" id="rej-reason" rows="3" placeholder="e.g. Insufficient details..."></textarea>
+                <input type="hidden" id="rej-pid">
+            </div>
+            <div class="mfoot">
+                <button class="btn btn-outline" onclick="closeM('modal-reject')">Cancel</button>
+                <button class="btn btn-danger" onclick="confirmReject()">Reject</button>
+            </div>
+        </div>
+    </div>
 
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  let particles = [];
-
-  class Particle{
-    constructor(x,y,color){
-      this.x = x;
-      this.y = y;
-
-      this.radius = 2 + Math.random()*3;
-
-      this.speedX = (Math.random()-0.5)*8;
-      this.speedY = (Math.random()-0.5)*8;
-
-      this.alpha = 1;
-      this.color = color;
-    }
-
-    update(){
-      this.x += this.speedX;
-      this.y += this.speedY;
-      this.alpha -= 0.015;
-    }
-
-    draw(){
-      ctx.save();
-      ctx.globalAlpha = this.alpha;
-
-      ctx.beginPath();
-      ctx.arc(this.x,this.y,this.radius,0,Math.PI*2);
-
-      ctx.fillStyle = this.color;
-      ctx.fill();
-
-      ctx.restore();
-    }
-  }
-
-  function createFirework(){
-    const x = Math.random()*canvas.width;
-    const y = Math.random()*canvas.height/2;
-
-    const colors = [
-      "#5eff8b",
-      "#9dffb0",
-      "#d6ffe0",
-      "#ffffff"
-    ];
-
-    for(let i=0;i<80;i++){
-      particles.push(
-        new Particle(
-          x,
-          y,
-          colors[Math.floor(Math.random()*colors.length)]
-        )
-      );
-    }
-  }
-
-  function animate(){
-    requestAnimationFrame(animate);
-
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-
-    particles.forEach((particle,index)=>{
-      particle.update();
-      particle.draw();
-
-      if(particle.alpha <= 0){
-        particles.splice(index,1);
-      }
-    });
-  }
-
-  animate();
-
-  setInterval(createFirework,1000);
-
-  window.addEventListener("resize",()=>{
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  });
-
-</script>
-
+    <div id="toast-wrap"></div>
+    <script src="app.js"></script>
 </body>
+
 </html>
